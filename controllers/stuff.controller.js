@@ -3,18 +3,17 @@ const Thing = require("../model/stuff.model");
  * ajouter des stuffs
  */
 module.exports.addStuff = async (req, res) => {
-  console.log(req.body);
   if (!req.body) {
     res.status(400).json({ message: "veillez entrer des données" });
   }
   try {
-    const thing = await Thing.create({
-      title: req.body.title,
-      description: req.body.description,
-      price: req.body.price,
-      url: req.body.url,
+    const thing = new Thing({
+      ...req.body,
     });
-    res.status(200).json(thing);
+    thing
+      .save()
+      .then(() => res.status(200).json({ reponse: "donne bien envoyés" }))
+      .catch(() => res.status(400).json({ error }));
   } catch (error) {
     res.status(400).json({ error });
   }

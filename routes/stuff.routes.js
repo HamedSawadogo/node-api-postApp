@@ -13,6 +13,6 @@ const router = express.Router();
 router.put("/:id", auth, updateStuffs);
 router.get("/", auth, getStuffs);
 router.get("/:id", auth, getStuff);
-router.post("/", auth, multer, addStuff);
+router.post("/", multer, addStuff);
 router.delete("/:id", auth, deleteStuffs);
 module.exports = router;
