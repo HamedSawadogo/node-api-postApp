@@ -10,9 +10,9 @@ const {
 } = require("../controllers/stuff.controller");
 const router = express.Router();
 
-router.put("/:id", auth, updateStuffs);
-router.get("/", auth, getStuffs);
-router.get("/:id", auth, getStuff);
+router.put("/:id", updateStuffs);
+router.get("/", getStuffs);
+router.get("/:id", getStuff);
 router.post("/", multer, addStuff);
 router.delete("/:id", auth, deleteStuffs);
 module.exports = router;

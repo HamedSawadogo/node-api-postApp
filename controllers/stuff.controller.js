@@ -2,7 +2,8 @@ const Thing = require("../model/stuff.model");
 /*
  * ajouter des stuffs
  */
-module.exports.addStuff = async (req, res) => {
+module.exports.addStuff = async (req, res, next) => {
+  console.log(req.file);
   if (!req.body) {
     res.status(400).json({ message: "veillez entrer des données" });
   }
@@ -13,9 +14,9 @@ module.exports.addStuff = async (req, res) => {
     thing
       .save()
       .then(() => res.status(200).json({ reponse: "donne bien envoyés" }))
-      .catch(() => res.status(400).json({ error }));
+      .catch((error) => res.status(400).json({ error }));
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ error: "une erreur est survenu" });
   }
 };
 /**
